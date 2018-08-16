@@ -60,12 +60,21 @@ def main():
         direction = find_pos(cx)
         if detected == True:
             #print '{}'.format(direction)
+            dist = int(robot.scan_for_obstacles())
 
             if direction == 'left':
-                robot.left_forward()
+                if dist < 30:
+                    robot.left()
+                    
+                else:
+                    robot.left_forward()
 
             else:
-                robot.right_forward()
+                if dist < 30:
+                    robot.right()
+                    
+                else:
+                    robot.right_forward()
 
         else:
             #print 'nuttin'
